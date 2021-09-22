@@ -22,10 +22,11 @@ class OrderController extends Controller
             "currency" => "XAF",
             "number" => 1,
             "status" => "pending",
-            "reference" => Str::random(12)
+            "reference" => Str::random(12),
+            "unit_price_amount" => \Cart::getTotal()
         ]);
 
-       
+
 
         foreach ($items as $item) {
             $category = $item->categories()->first();
@@ -33,15 +34,18 @@ class OrderController extends Controller
                 'id' => $item->id,
                 'product_type' => $category ? $category->id : "Undefined",
                 'product_id' => $item->id,
-                'quantity' => 1,    
+                'quantity' => 1,
                 'unit_price_amount' => $item->price_amount
             ]);
         }
 
         $notchpay = new Transaction("SANDBOX_524798867350");
 
-        $transaction = $notchpay->init( array ( "amount" => $order->price_amount , "currency" => "XAF" , "description" => "Shopwise checkout" , "email" => $user->email, "redirect_url" => route('cart')));
-
-        return redirect()->away($transaction->authorization_url);
+        try {
+            $transaction = $notchpay->init(array("amount" => $order->price_amount, "currency" => "XAF", "description" => "Shopwise checkout", "email" => $user->email, "redirect_url" => route('cart')));
+            return redirect()->away($transaction->authorization_url);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 }

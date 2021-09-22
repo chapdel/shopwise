@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57566112959722cada1218fdea2147cf",
+    "content-hash": "57c6a49ea89f5af69d820d64d600bbda",
     "packages": [
         {
             "name": "askedio/laravel-soft-cascade",
@@ -4888,6 +4888,62 @@
             "time": "2021-07-21T10:44:31+00:00"
         },
         {
+            "name": "notchpay/php-sdk",
+            "version": "1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notchpay/notchpay-php.git",
+                "reference": "ee677356165f51c263af39d34a0cfbe1faf4b50c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notchpay/notchpay-php/zipball/ee677356165f51c263af39d34a0cfbe1faf4b50c",
+                "reference": "ee677356165f51c263af39d34a0cfbe1faf4b50c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3",
+                "php-curl-class/php-curl-class": "^8.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Notchpay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chapdel KAMGA",
+                    "email": "drop@chapdel.me",
+                    "homepage": "https://chapdel.me"
+                }
+            ],
+            "description": "Notch Pay PHP Wrapper",
+            "homepage": "https://notchpay.co",
+            "keywords": [
+                "Orange Money",
+                "accept money",
+                "api",
+                "gateway",
+                "mtn momo",
+                "notchpay",
+                "payment",
+                "payment processing",
+                "yup"
+            ],
+            "support": {
+                "docs": "https://docs.notchpay.co",
+                "email": "support@notchpay.co",
+                "issues": "https://github.com/notchpay/notchpay-php/issues",
+                "source": "https://github.com/notchpay/notchpay-php/tree/1.3.3"
+            },
+            "time": "2021-09-20T09:21:53+00:00"
+        },
+        {
             "name": "opis/closure",
             "version": "3.6.2",
             "source": {
@@ -5153,6 +5209,77 @@
                 "source": "https://github.com/PhenX/php-svg-lib/tree/master"
             },
             "time": "2019-09-11T20:02:13+00:00"
+        },
+        {
+            "name": "php-curl-class/php-curl-class",
+            "version": "8.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-curl-class/php-curl-class.git",
+                "reference": "c97c96d5d422b4085aba32ace096c3e404dde607"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/c97c96d5d422b4085aba32ace096c3e404dde607",
+                "reference": "c97c96d5d422b4085aba32ace096c3e404dde607",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Curl\\": "src/Curl/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Zach Borboa"
+                }
+            ],
+            "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+            "homepage": "https://github.com/php-curl-class/php-curl-class",
+            "keywords": [
+                "API-Client",
+                "api",
+                "class",
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http-client",
+                "http-proxy",
+                "json",
+                "php",
+                "php-curl",
+                "php-curl-library",
+                "proxy",
+                "requests",
+                "restful",
+                "web-scraper",
+                "web-scraping ",
+                "web-service",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/8.10.0"
+            },
+            "time": "2021-06-23T14:34:00+00:00"
         },
         {
             "name": "phpoffice/phpspreadsheet",
