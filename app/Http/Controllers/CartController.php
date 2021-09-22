@@ -15,27 +15,29 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
+
         $request->validate([
             'quantity' => ['nullable', 'integer', 'min:1'],
             'id' => ['required']
         ]);
         $product = Product::findOrFail($request->id);
 
-
         CartFacade::add([
             'id' => $product->id,
             'name' => $product->name,
-            'price' => $product->price_amount,
+            'price' => $product->price_amount ?? 0,
             'quantity' => $request->quantity ?? 1,
         ], 1);
-        notify()->success('Added to Cart ⚡️');
+
+        // dd('ddd');
+        //notify()->success('Added to Cart ⚡️');
         return redirect()->back();
     }
 
     public function remove(Request $request, $id)
     {
         CartFacade::remove($id);
-        notify()->success('Item removed to Cart ⚡️');
+        //notify()->success('Item removed to Cart ⚡️');
         return redirect()->back();
     }
 }
