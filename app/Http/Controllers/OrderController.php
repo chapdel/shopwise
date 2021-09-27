@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Shopper\Framework\Models\Shop\Product\Product;
 use Notchpay\Transaction;
 use Illuminate\Support\Str;
+use Shopper\Framework\Models\Shop\Order\Order;
 
 class OrderController extends Controller
 {
@@ -42,10 +43,50 @@ class OrderController extends Controller
         $notchpay = new Transaction("SANDBOX_524798867350");
 
         try {
-            $transaction = $notchpay->init(array("amount" => $order->price_amount, "currency" => "XAF", "description" => "Shopwise checkout", "email" => $user->email, "redirect_url" => route('cart')));
+            $transaction = $notchpay->init(array("amount" => $order->price_amount, "currency" => "XAF", "description" => "Shopwise checkout", "email" => $user->email, "callback" => route('order.callback')));
+            $order->reference = $transaction->transaction->reference;
+            $order->save();
             return redirect()->away($transaction->authorization_url);
         } catch (\Throwable $th) {
             dd($th);
+        }
+    }
+
+    public function callback(Request $request)
+    {
+        if ($request->reference) {
+            $notchpay = new Transaction("SANDBOX_524798867350");
+
+            try {
+
+                $transaction = $notchpay->fetch($request->reference);
+                if ($transaction) {
+                    switch ($transaction->status) {
+                        case 'complete':
+                            //update status
+                            Order::whereReference($transaction->reference)->update(['status' => "paid"]);
+
+                            //clear cart
+                            \Cart::clear();
+
+                            return redirect()->route("cart");
+
+                            break;
+                        case "pending":
+                            //redirect cart with pending status
+                            return redirect()->route("cart");
+                        default:
+                            Order::whereReference($transaction->reference)->update(['status' => "cancelled"]);
+                            return redirect()->route("cart");
+                            break;
+                    }
+                }
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+        } else {
+            //redirect cart with pending status
+            return redirect()->route("cart");
         }
     }
 }

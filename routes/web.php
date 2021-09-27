@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 Route::get('/purchase', [App\Http\Controllers\HomeController::class, 'showPurchase'])->name('purchase.show');
 Route::post('/orders', [App\Http\Controllers\OrderController::class, 'store'])->name('order.store')->middleware('auth');
+Route::get('/orders/callback', [App\Http\Controllers\OrderController::class, 'callback'])->name('order.callback')->middleware('auth');
 Route::post('/cart', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::post('/logout', function () {
     auth()->logout();
