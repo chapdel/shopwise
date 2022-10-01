@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Shopper\Framework\Repositories\Ecommerce\ProductRepository;
 
 class SearchController extends Controller
 {
@@ -11,9 +12,15 @@ class SearchController extends Controller
     {
         $results = [];
 
+        if ($request->q) {
+            $results = (new ProductRepository())
+                ->makeModel()
+                ->search($request->q)->get();
+        }
         return Inertia::render("Search", [
-            "query" => $request->q ?? null,
-            "results" => $results
+            "q" => $request->q,
+            "results" => $results,
+            "response" => $request->q != ""
         ]);
     }
 }

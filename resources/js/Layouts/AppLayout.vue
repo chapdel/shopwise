@@ -262,33 +262,32 @@ defineProps({
 
                         <div v-else class="border-t border-gray-200 py-6 px-4 space-y-6">
                             <div class="flow-root">
-                                <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">
-                                Dashboard</Link>
-                            </div>
-                        </div>
+                                <Dropdown align="left" width="48">
+                                    <template #trigger>
+                                        <span class="inline-flex rounded-md">
+                                            <button type="button"
+                                                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                                                {{ $page.props.auth.user.real_name }}
 
-                        <div class="border-t border-gray-200 py-6 px-4 space-y-6">
-                            <!-- Currency selector -->
-                            <form>
-                                <div class="inline-block">
-                                    <label for="mobile-currency" class="sr-only">Currency</label>
-                                    <div
-                                        class="-ml-2 group relative border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
-                                        <select id="mobile-currency" name="currency"
-                                            class="bg-none border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-gray-700 group-hover:text-gray-800 focus:outline-none focus:ring-0 focus:border-transparent">
-                                            <option v-for="currency in currencies" :key="currency">{{ currency }}
-                                            </option>
-                                        </select>
-                                        <div class="absolute right-0 inset-y-0 flex items-center pointer-events-none">
-                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 20 20" class="w-5 h-5 text-gray-500">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4" />
-                                            </svg>
+                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <div class="px-2 py-1">
+                                            <DropdownLink :href="route('logout')" method="post" as="button">
+                                                Log Out
+                                            </DropdownLink>
                                         </div>
-                                    </div>
-                                </div>
-                            </form>
+                                    </template>
+                                </Dropdown>
+                            </div>
                         </div>
                     </div>
                 </TransitionChild>
