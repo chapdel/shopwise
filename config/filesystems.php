@@ -30,8 +30,6 @@ return [
     'cloud' => env('FILESYSTEM_CLOUD', 'minio'),
 
     'disks' => [
-
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

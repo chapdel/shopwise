@@ -22,7 +22,6 @@
                         </div>
                     </form>
                     <div class="md:flex md:items-center md:justify-between">
-
                         <h2 id="favorites-heading" v-if="q"
                             class="text-2xl font-extrabold tracking-tight text-gray-900">
                             Search for "{{ q }}" | <span class="text-sm">[{{results.length}} Result(s)]</span>

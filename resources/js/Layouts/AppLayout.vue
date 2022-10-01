@@ -281,6 +281,10 @@ defineProps({
 
                                     <template #content>
                                         <div class="px-2 py-1">
+                                            <DropdownLink v-if="$page.props.auth.user.roles.length> 0"
+                                                href="/shopper/dashboard">
+                                                Dashboard
+                                            </DropdownLink>
                                             <DropdownLink :href="route('logout')" method="post" as="button">
                                                 Log Out
                                             </DropdownLink>
@@ -325,6 +329,10 @@ defineProps({
 
                                 <template #content>
                                     <div class="px-2 py-1">
+                                        <DropdownLink v-if="$page.props.auth.user.roles.length> 0"
+                                            href="/shopper/dashboard">
+                                            Dashboard
+                                        </DropdownLink>
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </DropdownLink>
