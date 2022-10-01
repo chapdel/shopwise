@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/product/{slug}', [HomeController::class, 'show'])->name('product.show');
 Route::post('/cart/{slug}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::get('/checkout', [CartController::class, 'handle'])->name('checkout.handle')->middleware('auth');
 Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');

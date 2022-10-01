@@ -246,12 +246,21 @@ defineProps({
                             </div>
                         </div>
 
-                        <div class="border-t border-gray-200 py-6 px-4 space-y-6">
+                        <div v-if="!$page.props.user" class="border-t border-gray-200 py-6 px-4 space-y-6">
                             <div class="flow-root">
-                                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Create an account</a>
+                                <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">Create
+                                an account</Link>
                             </div>
                             <div class="flow-root">
-                                <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Sign in</a>
+                                <Link :href="route('signin')" class="-m-2 p-2 block font-medium text-gray-900">Sign in
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div v-else class="border-t border-gray-200 py-6 px-4 space-y-6">
+                            <div class="flow-root">
+                                <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">
+                                Dashboard</Link>
                             </div>
                         </div>
 
@@ -291,25 +300,11 @@ defineProps({
                         <!-- Currency selector -->
                         <form>
                             <div>
-                                <label for="desktop-currency" class="sr-only">Currency</label>
-                                <div
-                                    class="-ml-2 group relative bg-gray-900 border-transparent rounded-md focus-within:ring-2 focus-within:ring-white">
-                                    <select id="desktop-currency" name="currency"
-                                        class="bg-none bg-gray-900 border-transparent rounded-md py-0.5 pl-2 pr-5 flex items-center text-sm font-medium text-white group-hover:text-gray-100 focus:outline-none focus:ring-0 focus:border-transparent">
-                                        <option v-for="currency in currencies" :key="currency">{{ currency }}</option>
-                                    </select>
-                                    <div class="absolute right-0 inset-y-0 flex items-center pointer-events-none">
-                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 20 20" class="w-5 h-5 text-gray-300">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="1.5" d="M6 8l4 4 4-4" />
-                                        </svg>
-                                    </div>
-                                </div>
+
                             </div>
                         </form>
 
-                        <div v-if="$page.props.auth" class="flex items-center space-x-6">
+                        <div v-if="$page.props.user" class="flex items-center space-x-6">
                             <Link :href="route('dashboard')" class="text-sm font-medium text-white hover:text-gray-100">
                             Dashboard</Link>
                         </div>
@@ -410,19 +405,18 @@ defineProps({
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                     </svg>
-
                                 </button>
 
                                 <!-- Search -->
-                                <a href="#" class="ml-2 p-2 text-gray-400 hover:text-gray-500">
-                                    <span class="sr-only">Search</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                                <Link :href="route('search')" class="ml-2 p-2 text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Search</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
 
-                                </a>
+                                </Link>
                             </div>
 
                             <!-- Logo (lg-) -->
@@ -433,21 +427,11 @@ defineProps({
                             </Link>
 
                             <div class="flex-1 flex items-center justify-end">
-                                <a href="#"
+                                <Link :href="route('search')"
                                     class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                                    Search </a>
+                                Search </Link>
 
                                 <div class="flex items-center lg:ml-8">
-                                    <!-- Help -->
-                                    <a href="#" class="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
-                                        <span class="sr-only">Help</span>
-                                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                                        </svg>
-
-                                    </a>
                                     <a href="#"
                                         class="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">Help</a>
 
@@ -483,76 +467,9 @@ defineProps({
         <footer aria-labelledby="footer-heading" class="bg-gray-50">
             <h2 id="footer-heading" class="sr-only">Footer</h2>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="border-t border-gray-200 py-20">
-                    <div
-                        class="grid grid-cols-1 md:grid-cols-12 md:grid-flow-col md:gap-x-8 md:gap-y-16 md:auto-rows-min">
-                        <!-- Image section -->
-                        <div class="col-span-1 md:col-span-2 lg:row-start-1 lg:col-start-1">
-                            <img src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600" alt=""
-                                class="h-8 w-auto" />
-                        </div>
-
-                        <!-- Sitemap sections -->
-                        <div
-                            class="mt-10 col-span-6 grid grid-cols-2 gap-8 sm:grid-cols-3 md:mt-0 md:row-start-1 md:col-start-3 md:col-span-8 lg:col-start-2 lg:col-span-6">
-                            <div class="grid grid-cols-1 gap-y-12 sm:col-span-2 sm:grid-cols-2 sm:gap-x-8">
-                                <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Products</h3>
-                                    <ul role="list" class="mt-6 space-y-6">
-                                        <li v-for="item in footerNavigation.products" :key="item.name" class="text-sm">
-                                            <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                                                {{ item.name }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h3 class="text-sm font-medium text-gray-900">Company</h3>
-                                    <ul role="list" class="mt-6 space-y-6">
-                                        <li v-for="item in footerNavigation.company" :key="item.name" class="text-sm">
-                                            <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                                                {{ item.name }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-medium text-gray-900">Customer Service</h3>
-                                <ul role="list" class="mt-6 space-y-6">
-                                    <li v-for="item in footerNavigation.customerService" :key="item.name"
-                                        class="text-sm">
-                                        <a :href="item.href" class="text-gray-500 hover:text-gray-600">
-                                            {{ item.name }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Newsletter section -->
-                        <div
-                            class="mt-12 md:mt-0 md:row-start-2 md:col-start-3 md:col-span-8 lg:row-start-1 lg:col-start-9 lg:col-span-4">
-                            <h3 class="text-sm font-medium text-gray-900">Sign up for our newsletter</h3>
-                            <p class="mt-6 text-sm text-gray-500">The latest deals and savings, sent to your inbox
-                                weekly.
-                            </p>
-                            <form class="mt-2 flex sm:max-w-md">
-                                <label for="email-address" class="sr-only">Email address</label>
-                                <input id="email-address" type="text" autocomplete="email" required=""
-                                    class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500" />
-                                <div class="ml-4 flex-shrink-0">
-                                    <button type="submit"
-                                        class="w-full bg-pink-600 border border-transparent rounded-md shadow-sm py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">Sign
-                                        up</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="border-t border-gray-100 py-10 text-center">
-                    <p class="text-sm text-gray-500">&copy; 2021 Workflow, Inc. All rights reserved.</p>
+                    <p class="text-sm text-gray-500">&copy; 2022 Shopwise, Inc. All rights reserved.</p>
                 </div>
             </div>
         </footer>
