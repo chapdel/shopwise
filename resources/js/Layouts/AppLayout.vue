@@ -17,6 +17,8 @@ import {
     TransitionChild,
     TransitionRoot,
 } from '@headlessui/vue'
+import Dropdown from "@/Components/Dropdown.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
 // import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/vue/outline'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
@@ -182,6 +184,7 @@ defineProps({
 <template>
 
     <div class="bg-white">
+
         <!-- Mobile menu -->
         <TransitionRoot as="template" :show="open">
             <Dialog as="div" class="fixed inset-0 flex z-40 lg:hidden" @close="open = false">
@@ -246,7 +249,7 @@ defineProps({
                             </div>
                         </div>
 
-                        <div v-if="!$page.props.user" class="border-t border-gray-200 py-6 px-4 space-y-6">
+                        <div v-if="!$page.props.auth.user" class="border-t border-gray-200 py-6 px-4 space-y-6">
                             <div class="flow-root">
                                 <Link :href="route('register')" class="-m-2 p-2 block font-medium text-gray-900">Create
                                 an account</Link>
@@ -297,16 +300,38 @@ defineProps({
                 <!-- Top navigation -->
                 <div class="bg-gray-900">
                     <div class="max-w-7xl mx-auto h-10 px-4 flex items-center justify-between sm:px-6 lg:px-8">
-                        <!-- Currency selector -->
                         <form>
                             <div>
 
                             </div>
                         </form>
 
-                        <div v-if="$page.props.user" class="flex items-center space-x-6">
-                            <Link :href="route('dashboard')" class="text-sm font-medium text-white hover:text-gray-100">
-                            Dashboard</Link>
+                        <div v-if="$page.props.auth.user" class="flex items-center space-x-6">
+                            <Dropdown align="right" width="48">
+                                <template #trigger>
+                                    <span class="inline-flex rounded-md">
+                                        <button type="button"
+                                            class="inline-flex items-center text-sm font-medium text-white hover:text-gray-100">
+                                            {{ $page.props.auth.user.real_name }}
+
+                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </span>
+                                </template>
+
+                                <template #content>
+                                    <div class="px-2 py-1">
+                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                            Log Out
+                                        </DropdownLink>
+                                    </div>
+                                </template>
+                            </Dropdown>
                         </div>
                         <div v-else class="flex items-center space-x-6">
                             <Link :href="route('login')" class="text-sm font-medium text-white hover:text-gray-100">Sign
@@ -461,6 +486,7 @@ defineProps({
         </header>
 
         <main>
+
             <slot />
         </main>
 

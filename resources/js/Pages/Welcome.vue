@@ -218,7 +218,7 @@ defineProps({
                         Sale</h1>
                     <div class="mt-4 sm:mt-6">
                         <a href="#"
-                            class="inline-block bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700">Shop
+                            class="inline-block bg-pink-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-pink-700">Shop
                             Collection</a>
                     </div>
                 </div> -->
@@ -260,7 +260,7 @@ defineProps({
                 <div class="md:flex md:items-center md:justify-between">
                     <h2 id="favorites-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">New arrival
                     </h2>
-                    <!-- <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">Shop
+                    <!-- <a href="#" class="hidden text-sm font-medium text-pink-600 hover:text-pink-500 md:block">Shop
                         the collection<span aria-hidden="true"> &rarr;</span></a> -->
                 </div>
 
@@ -281,7 +281,7 @@ defineProps({
                 </div>
 
                 <div class="mt-8 text-sm md:hidden">
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span
+                    <a href="#" class="font-medium text-pink-600 hover:text-pink-500">Shop the collection<span
                             aria-hidden="true"> &rarr;</span></a>
                 </div>
             </div>
@@ -292,7 +292,7 @@ defineProps({
                 <div class="md:flex md:items-center md:justify-between">
                     <h2 id="favorites-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Popular
                         Products</h2>
-                    <!-- <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">Shop
+                    <!-- <a href="#" class="hidden text-sm font-medium text-pink-600 hover:text-pink-500 md:block">Shop
                                 the collection<span aria-hidden="true"> &rarr;</span></a> -->
                 </div>
 
@@ -313,7 +313,7 @@ defineProps({
                 </div>
 
                 <div class="mt-8 text-sm md:hidden">
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span
+                    <a href="#" class="font-medium text-pink-600 hover:text-pink-500">Shop the collection<span
                             aria-hidden="true"> &rarr;</span></a>
                 </div>
             </div>
