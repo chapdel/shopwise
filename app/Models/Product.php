@@ -11,11 +11,17 @@ class Product extends ProductProduct
     use HasFactory;
     use Searchable;
 
-    protected $appends = ['converted_price'];
+    protected $appends = ['converted_price', 'poster'];
+    protected $with = ['media'];
 
     public function getConvertedPriceAttribute()
     {
         $currency = SystemCurrency::find(SystemSetting::where('key', 'shop_currency_id')->first()->value);
         return currency_format($this->price_amount, $currency->code);
+    }
+
+    public function getPosterAttribute()
+    {
+        return "ddd";
     }
 }

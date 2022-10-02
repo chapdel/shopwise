@@ -12,6 +12,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+
+        /* dd((new ProductRepository())
+            ->makeModel()->first()->media); */
         return Inertia::render("Welcome", [
             'popular' => (new ProductRepository())
                 ->makeModel()

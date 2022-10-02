@@ -14,7 +14,7 @@
                         <ul role="list" class="border-t border-b border-gray-200 divide-y divide-gray-200">
                             <li v-for="product in $page.props.cart_content" :key="product.id" class="flex py-6">
                                 <div class="flex-shrink-0">
-                                    <img :src="product.associatedModel.image_src?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
+                                    <img :src="product.associatedModel.media[0]?product.associatedModel.media[0].original_url: 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
                                         :alt="product.imageAlt"
                                         class="w-24 h-24 rounded-md object-center object-cover sm:w-32 sm:h-32" />
                                 </div>
