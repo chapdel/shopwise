@@ -15,14 +15,15 @@ class CartController extends Controller
     public function add(Request $request, $slug)
     {
         $product = Product::whereSlug($slug)->firstOrFail();
-        \Cart::add(array(
+
+        \Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price_amount,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'associatedModel' => $product
-        ));
+        ]);
 
 
         return redirect()->back();
@@ -52,7 +53,7 @@ class CartController extends Controller
                 "Authorization" => env('NOTCHPAY_KEY')
             ])->acceptJson()->withOptions([
                 'verify' => false
-            ])->post("https://api.notchpay.co/checkout/initialize", array("amount" => \Cart::getSubTotal(), "currency" => "XAF", "description" => "Shopwise checkout", "email" => $request->user()->email));
+            ])->post("https://api.notchpay.co/checkout/initialize", array("amount" => \Cart::getSubTotal(), "currency" => "XAF", "description" => "Shopwise checkout", "email" => $request->user()->email, 'callback' => config('app.url') . '/checkout'));
 
 
 

@@ -267,8 +267,8 @@ defineProps({
                 <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
                     <div v-for="product in popular.data" :key="product.slug" class="group relative">
                         <div class="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-                            <img :src="product.image_src?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
-                                :alt="product.imageAlt" class="w-full h-full object-center object-cover" />
+                            <img :src="product.media[0].original_url" :alt="product.name"
+                                class="w-full h-full object-center object-cover" />
                         </div>
                         <h3 class="mt-4 text-sm text-gray-700">
                             <Link :href="route('product.show', product.slug)">
@@ -299,8 +299,8 @@ defineProps({
                 <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
                     <div v-for="product in arrival.data" :key="product.slug" class="group relative">
                         <div class="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-                            <img :src="product.image_src?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
-                                :alt="product.imageAlt" class="w-full h-full object-center object-cover" />
+                            <img :src="product.media[0].original_url" :alt="product.name"
+                                class="w-full h-full object-center object-cover" />
                         </div>
                         <h3 class="mt-4 text-sm text-gray-700">
                             <Link :href="route('product.show', product.slug)">
@@ -312,10 +312,10 @@ defineProps({
                     </div>
                 </div>
 
-                <div class="mt-8 text-sm md:hidden">
+                <!-- <div class="mt-8 text-sm md:hidden">
                     <a href="#" class="font-medium text-pink-600 hover:text-pink-500">Shop the collection<span
                             aria-hidden="true"> &rarr;</span></a>
-                </div>
+                </div> -->
             </div>
         </section>
 

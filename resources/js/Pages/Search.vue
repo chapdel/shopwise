@@ -30,7 +30,7 @@
                     <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
                         <div v-for="product in results" :key="product.slug" class="group relative">
                             <div class="w-full h-56 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-                                <img :src="product.image_src?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
+                                <img :src="product.media[0].original_url?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
                                     :alt="product.imageAlt" class="w-full h-full object-center object-cover" />
                             </div>
                             <h3 class="mt-4 text-sm text-gray-700">

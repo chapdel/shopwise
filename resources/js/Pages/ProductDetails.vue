@@ -65,7 +65,7 @@
             <!-- Product image -->
             <div class="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center">
                 <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-                    <img :src="product.image_src?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
+                    <img :src="product.media[0].original_url?? 'https://tailwindui.com/img/ecommerce-images/product-page-04-featured-product-shot.jpg'"
                         :alt="product.imageAlt" class="w-full h-full object-center object-cover" />
                 </div>
             </div>

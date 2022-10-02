@@ -11,7 +11,7 @@ class Product extends ProductProduct
     use HasFactory;
     use Searchable;
 
-    protected $appends = ['converted_price', 'img_src'];
+    protected $appends = ['converted_price'];
 
     public function getConvertedPriceAttribute()
     {

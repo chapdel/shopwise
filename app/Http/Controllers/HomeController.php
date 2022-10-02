@@ -12,9 +12,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-
-        // dd((new ProductRepository())->makeModel()->first()->getFirstMediaUrl(config('shopper.system.storage.disks.uploads')));
-
         return Inertia::render("Welcome", [
             'popular' => (new ProductRepository())
                 ->makeModel()
